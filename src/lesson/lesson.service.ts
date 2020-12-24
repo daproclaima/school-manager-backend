@@ -27,4 +27,8 @@ export class LessonService {
     // use { } or mongo will look for _id
     return this.lessonRepository.findOne({ id });
   }
+
+  async getLessons(): Promise<Lesson[]> {
+    return this.lessonRepository.find();
+  }
 }
