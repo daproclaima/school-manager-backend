@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Lesson } from './lesson.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Lesson]),],
+  imports: [TypeOrmModule.forFeature([Lesson])],
   providers: [LessonResolver, LessonService],
 })
 export class LessonModule {}
