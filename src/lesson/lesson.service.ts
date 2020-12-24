@@ -20,4 +20,9 @@ export class LessonService {
 
     return this.lessonRepository.save(lesson);
   }
+
+  async getLesson(id: string): Promise<Lesson> {
+    // use { } or mongo will look for _id
+    return this.lessonRepository.findOne({ id });
+  }
 }
