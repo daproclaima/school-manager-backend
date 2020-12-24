@@ -1,6 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { StudentType } from './student.type';
-import { CreateStudentInput } from './create-student.input';
+import { CreateStudentInput } from './student.input';
 import { StudentService } from './student.service';
 import { Logger } from '@nestjs/common';
 import { Student } from './student.entity';
@@ -15,6 +15,11 @@ export class StudentResolver {
     return this.studentService.getStudent(id);
   }
 
+  @Query((returns) => [StudentType])
+  async students(): Promise<Student[]> {
+    return this.studentService.getStudents();
+  }
+
   @Mutation((returns) => StudentType)
   async createStudent(
     @Args('createStudentInput') createStudentInput: CreateStudentInput,
@@ -24,10 +29,5 @@ export class StudentResolver {
     );
 
     return this.studentService.createStudent(createStudentInput);
-  }
-
-  @Query((returns) => [StudentType])
-  async students(): Promise<Student[]> {
-    return this.studentService.getStudents();
   }
 }
